@@ -6,10 +6,17 @@ from ..core.config import settings
 from ..models.article import Article
 
 
-def get_twitter_trending(query: str = "news", limit: int = 5) -> list[Article]:
-    client = tweepy.Client(bearer_token=settings.TWITTER_BEARER)
+def get_twitter_trending(
+        query: str = "news", 
+        limit: int = 10
+) -> list[Article]:
+    client = tweepy.Client(bearer_token=settings.TWITTER_BEARER, 
+                           wait_on_rate_limit=True)
     
-    tweets = client.search_recent_tweets(query=query, max_results=limit, tweet_fields=["created_at", "public_metrics"])
+    tweets = client.search_recent_tweets(
+        query=query, 
+        max_results=limit, 
+        tweet_fields=["created_at", "public_metrics"])
     
     articles = []
     if tweets.data:
@@ -20,6 +27,7 @@ def get_twitter_trending(query: str = "news", limit: int = 5) -> list[Article]:
                 title=tweet.text,
                 url=f"https://twitter.com/i/web/status/{tweet.id}",
                 score=metrics.get("like_count"),
-                created_at=tweet.created_at or datetime.now(timezone.utc)
+                created_at=tweet.created_at or datetime.now(timezone.utc),
+                id=tweet.id
             ))
     return articles
