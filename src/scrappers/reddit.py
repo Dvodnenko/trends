@@ -1,13 +1,13 @@
 import praw
 
-from ..core.config import config
+from ..core.config import settings
 from ..models.article import Article
 
 
 def get_reddit_top(subreddit: str = "news", limit: int = 5) -> list[Article]:
     reddit = praw.Reddit(
-        client_id=config.REDDIT_CLIENT_ID,
-        client_secret=config.REDDIT_SECRET,
+        client_id=settings.REDDIT_CLIENT_ID,
+        client_secret=settings.REDDIT_SECRET,
         user_agent="scraper-bot"
     )
     articles = []

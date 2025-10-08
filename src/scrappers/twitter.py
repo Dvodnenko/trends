@@ -2,12 +2,12 @@ from datetime import datetime, timezone
 
 import tweepy
 
-from ..core.config import config
+from ..core.config import settings
 from ..models.article import Article
 
 
 def get_twitter_trending(query: str = "news", limit: int = 5) -> list[Article]:
-    client = tweepy.Client(bearer_token=config.TWITTER_BEARER)
+    client = tweepy.Client(bearer_token=settings.TWITTER_BEARER)
     
     tweets = client.search_recent_tweets(query=query, max_results=limit, tweet_fields=["created_at", "public_metrics"])
     
