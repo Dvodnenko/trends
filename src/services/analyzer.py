@@ -1,6 +1,6 @@
 from typing import List
-from ..models.article import Article
-from ..models.insight import Insight
+from ..schemas.article import Article
+from ..schemas.insight import Insight
 from ..core.llm_client import LLMClient
 
 

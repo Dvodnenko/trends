@@ -5,7 +5,7 @@ from fastapi import Depends
 from ...scrappers import get_reddit_article
 from ...services.analyzer import AnalyzerService
 from ...core.llm_client import LLMClient
-from ...models.insight import Insight
+from ...schemas.insight import Insight
 
 
 def analyze_dep(
