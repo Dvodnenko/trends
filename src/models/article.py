@@ -8,5 +8,6 @@ class Article(BaseModel):
     source: str
     title: str
     url: str
+    id: str
     score: Optional[int] = None
     created_at: Optional[datetime] = None

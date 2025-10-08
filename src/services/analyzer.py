@@ -15,7 +15,7 @@ class AnalyzerService:
         for article in articles:
             prompt = (
                 f"Article: \"{article.title}\".\n"
-                f"Describe in short, why can this Article be popular"
+                f"Describe in one or two sentence, why can this Article be popular"
                 f"on the platform {article.source}."
             )
 
