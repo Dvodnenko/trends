@@ -1,4 +1,4 @@
-from ..models.article import Article
+from ..schemas.article import Article
 from ..core.reddit_client import get_reddit_client
 
 

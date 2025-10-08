@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 import tweepy
 
 from ..core.config import settings
-from ..models.article import Article
+from ..schemas.article import Article
 
 
 def get_twitter_trending(
