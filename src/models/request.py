@@ -1,11 +1,12 @@
+from dataclasses import dataclass
+
 from sqlalchemy import Integer, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
-from ..db import mapping_registry
+from ..db import Base
 
 
-@mapping_registry.mapped_as_dataclass
-class Request:
+class Request(Base):
 
     __tablename__ = "requests"
 
