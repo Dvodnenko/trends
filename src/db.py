@@ -1,5 +1,5 @@
 from sqlalchemy import MetaData, create_engine
-from sqlalchemy.orm import registry, sessionmaker
+from sqlalchemy.orm import registry, sessionmaker, DeclarativeBase
 
 from .core.config import settings
 
@@ -17,3 +17,6 @@ mapping_registry: registry = registry(metadata=metadata)
 
 engine = create_engine(url=settings.postgresurl, echo=False)
 Session = sessionmaker(engine)
+
+class Base(DeclarativeBase):
+    ...
