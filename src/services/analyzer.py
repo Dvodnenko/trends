@@ -1,15 +1,15 @@
 from typing import List
 from ..schemas.article import Article
 from ..schemas.insight import Insight
-from ..core.llm_client import LLMClient
+from ..core.llm_client import ask_gemini
 from ..models import Request
 from ..db import Session
 
 
 class AnalyzerService:
 
-    def __init__(self, model: LLMClient):
-        self._model = model
+    def __init__(self):
+        self.ask = ask_gemini
 
     def __generate_prompt(self, article: Article):
         prompt = (
@@ -29,7 +29,7 @@ class AnalyzerService:
         with Session() as session:
             for article in articles:
                 prompt = self.__generate_prompt(article)
-                reason = self._model.ask(prompt)
+                reason = self.ask(prompt)
                 insights.append(Insight(article_title=article.title, 
                                         reason=reason))
 
