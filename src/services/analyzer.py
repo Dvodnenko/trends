@@ -21,22 +21,28 @@ class AnalyzerService:
 
     def analyze_popularity(
             self, 
-            articles: List[Article], 
+            article: Article, 
             save: bool = False
-    ) -> List[Insight]:
-        insights: List[Insight] = []
+    ) -> Insight:
+        insight: Insight = None
 
         with Session() as session:
-            for article in articles:
-                prompt = self.__generate_prompt(article)
-                reason = self.ask(prompt)
-                insights.append(Insight(article_title=article.title, 
-                                        reason=reason))
+            prompt = self.__generate_prompt(article)
+            reason = self.ask(prompt)
+            insight = Insight(
+                source=article.source,
+                title=article.title,
+                url=article.url,
+                id=article.id,
+                score=article.score,
+                created_at=article.created_at,
+                reason=reason,
+            )
 
-                if save:
-                    req = Request(prompt=prompt, response=reason)
-                    session.add(req)
+            if save:
+                req = Request(prompt=prompt, response=reason)
+                session.add(req)
 
-            if save: session.commit()
+        if save: session.commit()
 
-        return insights
+        return insight

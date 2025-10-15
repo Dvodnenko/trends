@@ -1,6 +1,5 @@
-from pydantic import BaseModel
+from .article import Article
 
 
-class Insight(BaseModel):
-    article_title: str
+class Insight(Article):
     reason: str

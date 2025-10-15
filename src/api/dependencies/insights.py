@@ -12,7 +12,7 @@ def analyze_dep(
 ):
     service = AnalyzerService()
     r_article = get_reddit_article(post_id=id)
-    insights = service.analyze_popularity([r_article], save=True)
+    insights = service.analyze_popularity(r_article, save=True)
     return insights
 
 
