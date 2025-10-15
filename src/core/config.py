@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     PG_PORT: str
     PG_HOST: str
 
+    ## LLMs
+    GEMINI_API_KEY: str
+
     ## Special
     @property
     def postgresurl(self) -> str:

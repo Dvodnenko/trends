@@ -1,13 +1,19 @@
-import ollama
+from google import genai
+from dotenv import load_dotenv
+
+from .config import settings
 
 
-class LLMClient:
-    def __init__(self, model: str = "mistral"):
-        self.model = model
+load_dotenv()
 
-    def ask(self, prompt: str) -> str:
-        response = ollama.chat(
-            model=self.model,
-            messages=[{"role": "user", "content": prompt}]
+client = genai.Client(api_key=settings.GEMINI_API_KEY)
+
+def ask_gemini(contents: str) -> str:
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash", contents=contents
         )
-        return response.message.content
+    except Exception as e:
+        raise e
+
+    return response.text
