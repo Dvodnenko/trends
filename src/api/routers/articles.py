@@ -1,7 +1,6 @@
 from fastapi import APIRouter
 
-from ..dependencies.articles import (
-    RedditArticles, TwitterArticles, RedditArticle)
+from ..dependencies.articles import RedditArticles, RedditArticle
 
 
 articles_router = APIRouter(
@@ -16,9 +15,4 @@ def get_reddit_articles(data: RedditArticles):
 
 @articles_router.get("/reddit", tags=["reddit"])
 def get_reddit_article(data: RedditArticle):
-    return data
-
-
-@articles_router.get("/twitter", tags=["twitter"])
-def get_twitter_articles(data: TwitterArticles):
     return data
