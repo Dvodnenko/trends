@@ -9,7 +9,6 @@ class Settings(BaseSettings):
     ## Platforms
     REDDIT_CLIENT_ID: str
     REDDIT_SECRET: str
-    TWITTER_BEARER: str
 
     ## Databases
     PG_NAME: str
