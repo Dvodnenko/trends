@@ -20,7 +20,7 @@ application = FastAPI(
 
 application.add_middleware(
     CORSMiddleware, allow_origins="http://localhost:5173", 
-    allow_methods=["8"])
+    allow_methods=["*"])
 
 application.include_router(articles_router)
 application.include_router(insights_router)
